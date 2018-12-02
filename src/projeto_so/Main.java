@@ -10,11 +10,11 @@ public class Main {
 		
 		System.out.println("Posicao inicial cabecote: ");
 		int posicao = scanner.nextInt();
-		System.out.println(posicao);
+//		System.out.println(posicao);
 		
 		System.out.println("Tamanho da fila: ");
 		int tamanhoFila = scanner.nextInt();
-		System.out.println(tamanhoFila);
+//		System.out.println(tamanhoFila);
 		
 		System.out.println("Fila de espera");
 		int auxiliarFila = 0;
@@ -26,8 +26,13 @@ public class Main {
 			filaEspera[i] = auxiliarFila;
 		}
 		
-		for (int i = 0; i < tamanhoFila; i++)
-			System.out.print(filaEspera[i] + " ");
+		DadosHardDrive hd = new DadosHardDrive(tamanhoFila, posicao);
+		hd.setFilaEspera(filaEspera);
+		
+		CalculoCilindros cilindrosFCFS = new CilindrosFCFS(hd);
+		cilindrosFCFS.imprimeCabecalho();
+		cilindrosFCFS.ordenaFila();
+		cilindrosFCFS.calculaNumeroCilindrosPercorridos();
 	}
 
 }
