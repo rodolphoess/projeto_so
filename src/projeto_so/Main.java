@@ -61,7 +61,7 @@ public class Main {
 			CalculoCilindros cilindrosSCANUp = new CilindrosSCANUp(hd);
 			cilindrosSCANUp.imprimeCabecalho();
 			cilindrosSCANUp.ordenaFila();
-//			cilindrosSCANUp.calculaNumeroCilindrosPercorridos();
+			cilindrosSCANUp.calculaNumeroCilindrosPercorridos();
 
 			arq.close();
 		} catch (IOException e) {

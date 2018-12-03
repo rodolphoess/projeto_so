@@ -1,5 +1,6 @@
 package projeto_so;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CilindrosSSTF implements CalculoCilindros {
@@ -14,8 +15,12 @@ public class CilindrosSSTF implements CalculoCilindros {
 		int menorDiferenca = 0, diferenca = 0, posicaoLista = 0;
 		int numeroComAMenorDiferenca = 0;
 		int cilindroAtual = hd.getPosicaoCabecote();
-		List<Integer> filaEspera = hd.getFilaEsperaList();
+		List<Integer> filaEspera = new ArrayList<Integer>();
 		int[] filaEsperaOrdenada = new int[hd.getTamanhoFilaEspera() + 1];
+		
+		for (int i = 0; i < hd.getFilaEsperaList().size(); i++) {
+			filaEspera.add(hd.getFilaEsperaList().get(i));
+		}
 
 		for (int i = 0; i <= hd.getTamanhoFilaEspera(); i++) {
 			if (i == 0)
