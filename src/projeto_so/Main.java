@@ -34,23 +34,29 @@ public class Main {
 			filaEspera = new int[tamanhoFila];
 			for (int i = 0; i < linhaSplit.length; i++) {
 				Integer auxiliarFila = Integer.parseInt(linhaSplit[i]);
+
+				if (auxiliarFila > 199) {
+					System.err.println("Foi informado um setor maior do que 199.");
+					return;
+				}
+				
 				filaEspera[i] = auxiliarFila;
 				filaEsperaList.add(auxiliarFila);
 			}
-			
-			 DadosHardDrive hd = new DadosHardDrive(tamanhoFila, posicao);
-			 hd.setFilaEspera(filaEspera);
-			 hd.setFilaEsperaList(filaEsperaList);
-			
-			 CalculoCilindros cilindrosFCFS = new CilindrosFCFS(hd);
-			 cilindrosFCFS.imprimeCabecalho();
-			 cilindrosFCFS.ordenaFila();
-			 cilindrosFCFS.calculaNumeroCilindrosPercorridos();
-			
-			 CalculoCilindros cilindrosSSTF = new CilindrosSSTF(hd);
-			 cilindrosSSTF.imprimeCabecalho();
-			 cilindrosSSTF.ordenaFila();
-			 cilindrosSSTF.calculaNumeroCilindrosPercorridos();
+
+			DadosHardDrive hd = new DadosHardDrive(tamanhoFila, posicao);
+			hd.setFilaEspera(filaEspera);
+			hd.setFilaEsperaList(filaEsperaList);
+
+			CalculoCilindros cilindrosFCFS = new CilindrosFCFS(hd);
+			cilindrosFCFS.imprimeCabecalho();
+			cilindrosFCFS.ordenaFila();
+			cilindrosFCFS.calculaNumeroCilindrosPercorridos();
+
+			CalculoCilindros cilindrosSSTF = new CilindrosSSTF(hd);
+			cilindrosSSTF.imprimeCabecalho();
+			cilindrosSSTF.ordenaFila();
+			cilindrosSSTF.calculaNumeroCilindrosPercorridos();
 
 			arq.close();
 		} catch (IOException e) {
