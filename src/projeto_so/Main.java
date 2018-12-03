@@ -69,6 +69,9 @@ public class Main {
 			cilindrosSCANDown.calculaNumeroCilindrosPercorridos();
 
 			arq.close();
+			scanner.close();
+			arq.close();
+			lerArq.close();
 		} catch (IOException e) {
 			System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
 		}
