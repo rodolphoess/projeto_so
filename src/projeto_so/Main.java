@@ -1,5 +1,8 @@
 package projeto_so;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -7,41 +10,54 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		
+
 		Scanner scanner = new Scanner(System.in);
-		
-		System.out.println("Posicao inicial cabecote: ");
-		int posicao = scanner.nextInt();
-		
-		System.out.println("Tamanho da fila: ");
-		int tamanhoFila = scanner.nextInt();
-		
-		System.out.println("Fila de espera");
-		Integer auxiliarFila = 0;
-		
-		int[] filaEspera = new int[tamanhoFila];
+
+		System.out.println("Informe o nome de arquivo texto, por exemplo, c:\\teste.txt: ");
+		String nome = scanner.nextLine();
+
+		int tamanhoFila = 0, posicao = 0;
+		int[] filaEspera = null;
 		List<Integer> filaEsperaList = new ArrayList<Integer>();
-		
-		for (int i = 0; i < tamanhoFila; i++) {
-			auxiliarFila = scanner.nextInt();
-			filaEspera[i] = auxiliarFila;
+		try {
+			FileReader arq = new FileReader(nome);
+			BufferedReader lerArq = new BufferedReader(arq);
+
+			String linha = lerArq.readLine();
+			posicao = Integer.parseInt(linha);
+
+			linha = lerArq.readLine();
+			tamanhoFila = Integer.parseInt(linha);
+
+			linha = lerArq.readLine();
+			String[] linhaSplit = linha.split(" ");
+			filaEspera = new int[tamanhoFila];
+			for (int i = 0; i < linhaSplit.length; i++) {
+				Integer auxiliarFila = Integer.parseInt(linhaSplit[i]);
+				filaEspera[i] = auxiliarFila;
+				filaEsperaList.add(auxiliarFila);
+			}
 			
-			filaEsperaList.add(auxiliarFila);
+			 DadosHardDrive hd = new DadosHardDrive(tamanhoFila, posicao);
+			 hd.setFilaEspera(filaEspera);
+			 hd.setFilaEsperaList(filaEsperaList);
+			
+			 CalculoCilindros cilindrosFCFS = new CilindrosFCFS(hd);
+			 cilindrosFCFS.imprimeCabecalho();
+			 cilindrosFCFS.ordenaFila();
+			 cilindrosFCFS.calculaNumeroCilindrosPercorridos();
+			
+			 CalculoCilindros cilindrosSSTF = new CilindrosSSTF(hd);
+			 cilindrosSSTF.imprimeCabecalho();
+			 cilindrosSSTF.ordenaFila();
+			 cilindrosSSTF.calculaNumeroCilindrosPercorridos();
+
+			arq.close();
+		} catch (IOException e) {
+			System.err.printf("Erro na abertura do arquivo: %s.\n", e.getMessage());
 		}
-		
-		DadosHardDrive hd = new DadosHardDrive(tamanhoFila, posicao);
-		hd.setFilaEspera(filaEspera);
-		hd.setFilaEsperaList(filaEsperaList);
-		
-		CalculoCilindros cilindrosFCFS = new CilindrosFCFS(hd);
-		cilindrosFCFS.imprimeCabecalho();
-		cilindrosFCFS.ordenaFila();
-		cilindrosFCFS.calculaNumeroCilindrosPercorridos();
-		
-		CalculoCilindros cilindrosSSTF = new CilindrosSSTF(hd);
-		cilindrosSSTF.imprimeCabecalho();
-		cilindrosSSTF.ordenaFila();
-		cilindrosSSTF.calculaNumeroCilindrosPercorridos();
+
+		System.out.println();
 	}
 
 }
