@@ -57,6 +57,11 @@ public class Main {
 			cilindrosSSTF.imprimeCabecalho();
 			cilindrosSSTF.ordenaFila();
 			cilindrosSSTF.calculaNumeroCilindrosPercorridos();
+			
+			CalculoCilindros cilindrosSCANUp = new CilindrosSCANUp(hd);
+			cilindrosSCANUp.imprimeCabecalho();
+			cilindrosSCANUp.ordenaFila();
+//			cilindrosSCANUp.calculaNumeroCilindrosPercorridos();
 
 			arq.close();
 		} catch (IOException e) {
