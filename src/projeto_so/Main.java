@@ -62,6 +62,11 @@ public class Main {
 			cilindrosSCANUp.imprimeCabecalho();
 			cilindrosSCANUp.ordenaFila();
 			cilindrosSCANUp.calculaNumeroCilindrosPercorridos();
+			
+			CalculoCilindros cilindrosSCANDown = new CilindrosSCANDown(hd);
+			cilindrosSCANDown.imprimeCabecalho();
+			cilindrosSCANDown.ordenaFila();
+			cilindrosSCANDown.calculaNumeroCilindrosPercorridos();
 
 			arq.close();
 		} catch (IOException e) {
